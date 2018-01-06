@@ -85,6 +85,9 @@ env/
 venv/
 ENV/
 
+# Intellij
+.idea
+
 # Spyder project settings
 .spyderproject
 .spyproject
