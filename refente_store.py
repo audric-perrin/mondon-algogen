@@ -1,10 +1,15 @@
 from typing import List
+from bobine_mere_store import BobineMere
 
 
 class Refente:
     def __init__(self, code: int, pistes: List[float]) -> None:
+        self.code = code
         self.pistes = pistes
         self.laizes = round(sum(self.pistes))
+
+    def __str__(self):
+        return "Refente: code:{}, {}".format(self.code, self.pistes)
 
 
 class RefenteStore:
@@ -13,6 +18,16 @@ class RefenteStore:
 
     def add_refente(self, refente: Refente) -> None:
         self.refentes.append(refente)
+
+    def filter_for_bobine_mere(self, bobine_mere: BobineMere):
+        new_refente_store = RefenteStore()
+        for refente in self.refentes:
+            if refente.laizes == bobine_mere.laize:
+                new_refente_store.add_refente(refente)
+        return new_refente_store
+
+    def __str__(self):
+        return "Refentes: {}".format(self.refentes)
 
 
 refente_store = RefenteStore()

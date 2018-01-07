@@ -1,4 +1,6 @@
-from typing import List
+from typing import List, Tuple
+from bobine_mere_store import BobineMere
+from refente_store import Refente, refente_store
 
 
 class Bobine:
@@ -9,6 +11,15 @@ class Bobine:
         self.longueur = longueur
         self.poses = poses
 
+    def __str__(self):
+        return "B{}({}, {}, {})".format(self.code, self.color.capitalize(), self.laize, self.poses)
+
+
+def get_combinaison_label(combinaison: List[Tuple[Bobine, int]]) -> str:
+    combinaison_as_string = ["{}-{}".format(bobine.code, pose) for (bobine, pose) in combinaison]
+    combinaison_as_string = sorted(combinaison_as_string)
+    return ",".join(combinaison_as_string)
+
 
 class BobineStore:
     def __init__(self) -> None:
@@ -16,6 +27,78 @@ class BobineStore:
 
     def add_bobine(self, bobine: Bobine) -> None:
         self.bobines.append(bobine)
+
+    def filter_from_refente_and_bobine_mere(self, refente: Refente, bobine_mere: BobineMere):
+        new_bobine_store = BobineStore()
+        color = bobine_mere.color
+        pistes = set(refente.pistes)
+        for bobine in self.bobines:
+            if bobine.color == color and bobine.laize in pistes:
+                new_bobine_store.add_bobine(bobine)
+        return new_bobine_store
+
+    def get_combinaisons_from_refente(self, refente: Refente):
+        combinaisons = self.get_combinaisons_from_refente_at_index(combinaison=[], refente=refente, index=0)
+        return combinaisons
+
+    def get_consecutive_piste_count_at_index(self, refente: Refente, index: int) -> int:
+        piste_laize = refente.pistes[index]
+        count = 1
+        for i in range(index + 1, len(refente.pistes)):
+            if refente.pistes[i] == piste_laize:
+                count += 1
+            else:
+                break
+        return count
+
+    def get_bobines_and_pose_for_refente_at_index(self, refente: Refente, index: int) -> List[Tuple[Bobine, int]]:
+        results = []  # type : List[Tuple[Bobine, int]]
+        piste_count = self.get_consecutive_piste_count_at_index(refente, index)
+        piste_laize = refente.pistes[index]
+        for bobine in self.bobines:
+            if bobine.laize == piste_laize:
+                for pose in bobine.poses:
+                    if pose <= piste_count:
+                        results.append((bobine, pose))
+        return results
+
+    def dedupe_combinaisons(self, combinaisons: List[List[Tuple[Bobine, int]]]):
+        combinaison_dic = {get_combinaison_label(combinaison): combinaison for combinaison in reversed(combinaisons)}
+        return list(combinaison_dic.values())
+
+    def get_combinaisons_from_refente_at_index(self, combinaison: List[Tuple[Bobine, int]], refente: Refente, index: int):
+        new_combinaisons = []  # type: List[List[Tuple[Bobine, int]]]
+        bobines_and_poses = self.get_bobines_and_pose_for_refente_at_index(refente, index)
+        for bobine_and_pose in bobines_and_poses:
+            #  ___Sortir la fonction def is_bobine_and_pose_valid_in_combinaison(combinaison: List[Tuple[Bobine, int]], bobine_and_pose: Tuple[Bobine, int]) -> bool:
+            bobine = bobine_and_pose[0]
+            pose = bobine_and_pose[1]
+            count_pose = bobine.poses.count(pose)
+            count = 0
+            for c_bobine_and_pose in combinaison:
+                if c_bobine_and_pose == bobine_and_pose:
+                    count += 1
+            #  ___Sortir la fonction
+            if pose == 0 or count_pose > count:
+                new_combinaison = combinaison + [(bobine, pose)]
+                actual_pose = 1 if pose == 0 else pose
+                if actual_pose + index == len(refente.pistes):
+                    new_combinaisons.append(new_combinaison)
+                elif actual_pose + index < len(refente.pistes):
+                    next_call_combinaisons = self.get_combinaisons_from_refente_at_index(
+                        combinaison=new_combinaison,
+                        refente=refente,
+                        index=index + actual_pose)
+                    for next_call_combinaison in next_call_combinaisons:
+                        new_combinaisons.append(next_call_combinaison)
+                else:
+                    continue
+        return self.dedupe_combinaisons(new_combinaisons)
+
+    def __str__(self):
+        for bobine in self.bobines:
+            print(bobine)
+        return ""
 
 
 bobine_store = BobineStore()
@@ -558,17 +641,17 @@ bobine_store.add_bobine(Bobine(code=i, color="vert", laize=150, longueur=500, po
 i += 1
 bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[0]))
 i += 1
-bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[2]))
+bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[1]))
 i += 1
 bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[4]))
 i += 1
 bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[1]))
 i += 1
-bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[2]))
+bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[1, 2]))
 i += 1
 bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[0]))
 i += 1
-bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[2]))
+bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[2, 2]))
 i += 1
 bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[4]))
 i += 1
@@ -826,7 +909,7 @@ bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=190, longueur=700, po
 i += 1
 bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=210, longueur=500, poses=[0]))
 i += 1
-bobine_store.add_bobine(Bobine(code=i, color="", laize=210, longueur=500, poses=[0]))
+bobine_store.add_bobine(Bobine(code=i, color="ivoire", laize=210, longueur=500, poses=[0]))
 i += 1
 bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=210, longueur=500, poses=[0]))
 i += 1

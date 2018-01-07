@@ -2,10 +2,13 @@ from typing import List
 
 
 class BobineMere:
-    def __init__(self, code: int, color: str, largeur: int) -> None:
+    def __init__(self, code: int, color: str, laize: int) -> None:
         self.code = code
         self.color = color
-        self.largeur = largeur
+        self.laize = laize
+
+    def __str__(self):
+        return "Bobine mère: code:{}, {} {}".format(self.code, self.color.capitalize(), self.laize)
 
 
 class BobineMereStore:
@@ -18,64 +21,64 @@ class BobineMereStore:
 
 bobine_mere_store = BobineMereStore()
 i = 0
-bobine_mere_store.add_bobine(BobineMere(code=i, color='blanc', largeur=560))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='blanc', laize=560))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='blanc', largeur=600))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='blanc', laize=600))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='blanc', largeur=720))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='blanc', laize=720))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='blanc', largeur=840))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='blanc', laize=840))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='blanc', largeur=980))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='blanc', laize=980))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='cx', largeur=560))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='cx', laize=560))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='cx', largeur=720))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='cx', laize=720))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='cx', largeur=900))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='cx', laize=900))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='ecru', largeur=840))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='ecru', laize=840))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='ecru', largeur=980))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='ecru', laize=980))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='ivoire', largeur=600))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='ivoire', laize=600))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='ivoire', largeur=720))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='ivoire', laize=720))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='jaune', largeur=720))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='jaune', laize=720))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='jaune', largeur=980))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='jaune', laize=980))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='marron', largeur=600))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='marron', laize=600))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='marron', largeur=720))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='marron', laize=720))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='marron', largeur=840))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='marron', laize=840))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='noir', largeur=600))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='noir', laize=600))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='noir', largeur=720))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='noir', laize=720))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='noir', largeur=840))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='noir', laize=840))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='orange', largeur=560))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='orange', laize=560))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='orange', largeur=600))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='orange', laize=600))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='orange', largeur=720))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='orange', laize=720))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='orange', largeur=840))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='orange', laize=840))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='prune', largeur=720))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='prune', laize=720))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='prune', largeur=840))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='prune', laize=840))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='rouge', largeur=600))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='rouge', laize=600))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='rouge', largeur=720))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='rouge', laize=720))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='rouge', largeur=840))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='rouge', laize=840))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='vert', largeur=600))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='vert', laize=600))
 i += 1
-bobine_mere_store.add_bobine(BobineMere(code=i, color='vert', largeur=720))
+bobine_mere_store.add_bobine(BobineMere(code=i, color='vert', laize=720))
