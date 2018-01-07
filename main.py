@@ -1,5 +1,40 @@
 from random import randint
 
+
+class BobineColor:
+    def __init__(self, name):
+        self.name = name
+
+
+class BobineLaize:
+    def __init__(self, width):
+        self.width = width
+
+
+class Bobine:
+    def __init__(self, laize, color):
+        self.laize = laize
+        self.color = color
+
+
+class BobineStock:
+    def __init__(self, bobine, vente, stock_terme):
+        self.bobine = bobine
+        self.vente = vente
+        self.stock_terme = stock_terme
+
+    def __str__(self):
+        return 'BobineStock({}, vente={}, stock_terme={})'.format(self.bobine, self.vente, self.stock_terme)
+
+bobine_color_red = BobineColor('red')
+bobine_laize = BobineLaize(140)
+bobine = Bobine(laize=bobine_laize, color=bobine_color_red)
+bobine_stock_1 = BobineStock(bobine, vente=10000, stock_terme=15)
+print(bobine_stock_1)
+
+
+
+
 POP = 1000
 NOMBRE_PLAN_PRODUCTION = 10
 NOMBRE_BOB_PAR_PROD = 31
@@ -29,7 +64,7 @@ def insert(bob, plan_prod):
     index_laize = 0
     for laize in REFENTE:
         if not plan_prod[index_laize] and laize == bob["laize"]:
-            if randint (0, 1) == 1:
+            if randint(0, 1) == 1:
                 plan_prod[index_laize] = bob
         index_laize += 1
 
