@@ -58,27 +58,26 @@ for bobine_mere in bobine_mere_store.bobines_meres:
             bobine_mere,
             refente,
         ), end='')
-
-        if bobine_mere.code == 3 and refente.code == 3:
-            continue
-        if bobine_mere.code == 4 and refente.code == 0:
-            continue
-        if bobine_mere.code == 4 and refente.code == 5:
-            continue
-        if bobine_mere.code == 8 and refente.code == 3:
-            continue
-        if bobine_mere.code == 9 and refente.code == 0:
-            continue
-        if bobine_mere.code == 9 and refente.code == 5:
-            continue
-        if bobine_mere.code == 9 and refente.code == 8:
-            continue
-        if bobine_mere.code == 9 and refente.code == 10:
-            continue
-        if bobine_mere.code == 9 and refente.code == 13:
-            continue
-        if bobine_mere.code == 13 and refente.code == 0:
-            continue
+        # if bobine_mere.code == 3 and refente.code == 3:
+        #     continue
+        # if bobine_mere.code == 4 and refente.code == 0:
+        #     continue
+        # if bobine_mere.code == 4 and refente.code == 5:
+        #     continue
+        # if bobine_mere.code == 8 and refente.code == 3:
+        #     continue
+        # if bobine_mere.code == 9 and refente.code == 0:
+        #     continue
+        # if bobine_mere.code == 9 and refente.code == 5:
+        #     continue
+        # if bobine_mere.code == 9 and refente.code == 8:
+        #     continue
+        # if bobine_mere.code == 9 and refente.code == 10:
+        #     continue
+        # if bobine_mere.code == 9 and refente.code == 13:
+        #     continue
+        # if bobine_mere.code == 13 and refente.code == 0:
+        #     continue
         t1 = time.time()
         new_bobine_store = bobine_store.filter_from_refente_and_bobine_mere(refente=refente, bobine_mere=bobine_mere)
         combinaisons = new_bobine_store.get_combinaisons_from_refente(refente=refente)
@@ -91,9 +90,6 @@ for bobine_mere in bobine_mere_store.bobines_meres:
             bobine_results[bobine_mere_str] = ([], 0)
         bobine_results[bobine_mere_str] = ((refente, new_count_combinaison, t2 - t1), bobine_results[bobine_mere_str][1] + t2 - t1)
         refente_results.append((bobine_mere, refente, new_count_combinaison, t2 - t1))
-
-
-# print(results)
 
 
 tend = time.time()
@@ -150,16 +146,3 @@ print_refente_by_code()
 print('\n')
 print_refente_by_code_bobine_mere()
 print('\n')
-
-
-# # __________________CALCUL COMBINAISON BOBINE_MERE/REFENTE__________________
-# i = 0
-# for bobine_mere in bobine_mere_store.bobines_meres:
-#     i += len(refente_store.filter_for_bobine_mere(bobine_mere).refentes)
-#     print("_____BOBINE MERE_____")
-#     print(bobine_mere)
-#     print("_____LISTE REFENTE_____")
-#     for refente in refente_store.filter_for_bobine_mere(bobine_mere).refentes:
-#         print(refente)
-# print("_____NOMBRE COMBINAISON_____")
-# print(i)
