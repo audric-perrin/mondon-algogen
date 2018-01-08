@@ -4,6 +4,11 @@ from refente_store import refente_store
 from bobine_store import bobine_store, get_combinaison_label
 from bobine_mere_store import bobine_mere_store
 
+from bobine_data_estimate import add_all_bobines
+# from bobine_data_GESCOM import add_all_bobines
+
+add_all_bobines(bobine_store)
+
 # # # __________________CALCUL COMBINAISON POUR UN COUPLE DE REFENTE/BOBINE MERE__________________
 # bobine_mere = bobine_mere_store.bobines_meres[26]
 # print("_____BOBINE MERE_____")
@@ -72,6 +77,7 @@ for bobine_mere in bobine_mere_store.bobines_meres:
 tend = time.time()
 print('\n')
 print("Temps d'exécution: {}".format(tend-t0))
+print("Total combinaison: {}".format(count_combinaison))
 print('\n')
 
 bobine_results = bobine_results.values()
@@ -83,7 +89,7 @@ for refente_result in refente_results:
     exe_time = '{:7.3f}'.format(round(refente_result[3] * 1000) / 1000)
     bobine = refente_result[0].ljust(32)
     refente = refente_result[1]
-    print('{} - {}s  |  {}  |  {}'.format(combi, exe_time, bobine, refente))
+    print('{} -> {}s  |  {}  |  {}'.format(combi, exe_time, bobine, refente))
 
 
 
