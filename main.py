@@ -3,10 +3,10 @@ from bobine_store import bobine_store, get_combinaison_label
 from bobine_mere_store import bobine_mere_store
 
 # # __________________CALCUL COMBINAISON POUR UN COUPLE DE REFENTE/BOBINE MERE__________________
-bobine_mere = bobine_mere_store.bobines_meres[2]
+bobine_mere = bobine_mere_store.bobines_meres[26]
 print("_____BOBINE MERE_____")
 print(bobine_mere)
-refente = refente_store.refentes[12]
+refente = refente_store.refentes[4]
 print("_____ REFENTE_____")
 print(refente)
 new_bobine_store = bobine_store.filter_from_refente_and_bobine_mere(refente=refente, bobine_mere=bobine_mere)
@@ -19,7 +19,7 @@ for combinaison in new_count_combinaisons:
 print(len(new_count_combinaisons))
 
 
-# # __________________CALCUL COMBINAISON POSSIBLE__________________
+# __________________CALCUL COMBINAISON POSSIBLE__________________
 # count_combinaison = 0
 # for bobine_mere in bobine_mere_store.bobines_meres:
 #     print("_____BOBINE MERE_____")
