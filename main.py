@@ -22,11 +22,15 @@ from bobine_mere_store import bobine_mere_store
 
 
 # __________________CALCUL COMBINAISON POSSIBLE__________________
+
+bobine_results = {}
+refente_results = []
+
 t0 = time.time()
 count_combinaison = 0
+dedupe_time = 0
 for bobine_mere in bobine_mere_store.bobines_meres:
-    print("_____BOBINE MERE_____")
-    print(bobine_mere)
+    bobine_mere_str = str(bobine_mere)
     refentes = refente_store.filter_for_bobine_mere(bobine_mere).refentes
     for refente in refentes:
         if bobine_mere.code == 3 and refente.code == 3:
@@ -49,18 +53,39 @@ for bobine_mere in bobine_mere_store.bobines_meres:
             continue
         if bobine_mere.code == 13 and refente.code == 0:
             continue
-        print("_____LISTE REFENTE_____")
-        print(refente)
         t1 = time.time()
         new_bobine_store = bobine_store.filter_from_refente_and_bobine_mere(refente=refente, bobine_mere=bobine_mere)
-        new_count_combinaison = len(new_bobine_store.get_combinaisons_from_refente(refente=refente))
-        print(new_count_combinaison)
+        combinaisons = new_bobine_store.get_combinaisons_from_refente(refente=refente)
+        combinaisons = new_bobine_store.dedupe_combinaisons(combinaisons)
+        new_count_combinaison = len(combinaisons)
         count_combinaison += new_count_combinaison
         t2 = time.time()
-        print("Temps d'exécution: {}".format(t2 - t1))
-print(count_combinaison)
+        if not bobine_results.get(bobine_mere_str):
+            bobine_results[bobine_mere_str] = ([], 0)
+        bobine_results[bobine_mere_str] = ((refente, new_count_combinaison, t2 - t1), bobine_results[bobine_mere_str][1] + t2 - t1)
+        refente_results.append((bobine_mere_str, refente, new_count_combinaison, t2 - t1))
+
+
+# print(results)
+
+
 tend = time.time()
+print('\n')
 print("Temps d'exécution: {}".format(tend-t0))
+print('\n')
+
+bobine_results = bobine_results.values()
+refente_results.sort(key=lambda r: r[2], reverse=True)
+print('Résultat des refentes trié par combinaison')
+print('------------------------------------------')
+for refente_result in refente_results:
+    combi = str(refente_result[2]).rjust(6)
+    exe_time = '{:7.3f}'.format(round(refente_result[3] * 1000) / 1000)
+    bobine = refente_result[0].ljust(32)
+    refente = refente_result[1]
+    print('{} - {}s  |  {}  |  {}'.format(combi, exe_time, bobine, refente))
+
+
 
 
 # # __________________CALCUL COMBINAISON BOBINE_MERE/REFENTE__________________

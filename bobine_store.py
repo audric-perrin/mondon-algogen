@@ -2,6 +2,8 @@ from typing import List, Tuple, Optional
 from bobine_mere_store import BobineMere
 from refente_store import Refente
 
+time_spent_deduping = 0
+
 
 class Bobine:
     def __init__(self, code: int, color: str, laize: float, longueur: int, poses: List[int]) -> None:
@@ -15,10 +17,13 @@ class Bobine:
         return "B{}({}, {}, {}, {})".format(self.code, self.color.capitalize(), self.laize, self.longueur, self.poses)
 
 
-def get_combinaison_label(combinaison: List[Tuple[Bobine, int]]) -> str:
-    combinaison_as_string = ["{}-{}".format(bobine.code, pose) for (bobine, pose) in combinaison]
-    combinaison_as_string = sorted(combinaison_as_string)
-    return ",".join(combinaison_as_string)
+def get_combinaison_label(combinaison: List[Tuple[Bobine, int]]) -> int:
+    combinaison_as_int = [bobine.code * (pose + 1) for (bobine, pose) in combinaison]
+    combinaison_as_int = sorted(combinaison_as_int)
+    count = 0
+    for (index, combi_int) in enumerate(combinaison_as_int):
+        count += combi_int * 1024 ** index
+    return count
 
 
 class BobineStore:
@@ -71,7 +76,7 @@ class BobineStore:
     @staticmethod
     def dedupe_combinaisons(combinaisons: List[List[Tuple[Bobine, int]]]):
         combinaison_dic = {get_combinaison_label(combinaison): combinaison for combinaison in reversed(combinaisons)}
-        return list(combinaison_dic.values())
+        return combinaison_dic.values()
 
     @staticmethod
     def is_bobine_and_pose_valid_in_combinaison(combinaison: List[Tuple[Bobine, int]], bobine: Bobine, pose: int) -> bool:
@@ -83,6 +88,7 @@ class BobineStore:
         return pose == 0 or count_pose > count
 
     def get_combinaisons_from_refente_at_index(self, combinaison: List[Tuple[Bobine, int]], refente: Refente, index: int, condition_longueur: Optional[int]):
+        global time_spent_deduping
         new_combinaisons = []  # type: List[List[Tuple[Bobine, int]]]
         bobines_and_poses = self.get_bobines_and_pose_for_refente_at_index(refente, index, condition_longueur)
         for bobine_and_pose in bobines_and_poses:
@@ -104,7 +110,11 @@ class BobineStore:
                         new_combinaisons.append(next_call_combinaison)
                 else:
                     continue
-        return self.dedupe_combinaisons(new_combinaisons)
+        return new_combinaisons
+
+    def get_time_deduping(self):
+        global time_spent_deduping
+        return time_spent_deduping
 
     def __str__(self):
         for bobine in self.bobines:
