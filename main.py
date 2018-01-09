@@ -10,12 +10,12 @@ from bobine_data_estimate import add_all_bobines
 
 
 # ____________PARAM ALGOGENE____________
-SIZE_GENERATION = 1000
+SIZE_GENERATION = 500
 add_all_bobines(bobine_store)
 count_generation = 0
 generation = get_first_generation(SIZE_GENERATION, get_combinaison_from_bobine_ivoire())
 print(generation[0][1])
-while count_generation < 50:
+while count_generation < 20:
     generation.sort(key=lambda t: t[1], reverse=True)
     new_generation = get_next_generation(SIZE_GENERATION, generation)
     generation = new_generation

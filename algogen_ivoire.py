@@ -43,7 +43,7 @@ def get_combinaison_from_bobine_ivoire() -> List[List[Tuple[Bobine, int]]]:
 
 def get_plan_production(combinaisons: List[List[Tuple[Bobine, int]]]) -> List[Tuple[Bobine, int]]:
     plan_production = []
-    while len(plan_production) < 100:
+    while len(plan_production) < 10:
         plan_production.append(combinaisons[random.randint(0, len(combinaisons) - 1)])
     return plan_production
 
@@ -132,7 +132,7 @@ def get_next_generation(generation_size: int, generation: List[Tuple[List[Tuple[
         new_generation.append((new_plan_prod, fitness))
         index_generation += 1
     count_mutation = 0
-    while count_mutation < round(len(new_generation)*0.3):
+    while count_mutation < round(len(new_generation)*0.5):
         get_mutation(new_generation[random.randint(0, len(generation) - 1)][0])
         count_mutation += 1
     return new_generation
