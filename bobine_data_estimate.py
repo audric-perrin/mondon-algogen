@@ -9,19 +9,19 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=130, longueur=700, poses=[0]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=130, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=130, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=130, longueur=700, poses=[0]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=130, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=130, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=130, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=130, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=130, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=130, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=130, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=130, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=130, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=130, longueur=700, poses=[5]))
     i += 1
@@ -53,13 +53,13 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[0]))
     i += 1
@@ -71,7 +71,7 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[1, 1, 1, 1]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4]))
     i += 1
@@ -81,13 +81,13 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[1]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[2]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[5]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[2]))
     i += 1
@@ -97,17 +97,17 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[7]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[4]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[4]))
     i += 1
@@ -135,7 +135,7 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="noir", laize=140, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="noir", laize=140, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="noir", laize=140, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="noir", laize=140, longueur=500, poses=[4]))
     i += 1
@@ -145,7 +145,7 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="prune", laize=140, longueur=500, poses=[0]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="prune", laize=140, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="prune", laize=140, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="prune", laize=140, longueur=500, poses=[4]))
     i += 1
@@ -165,9 +165,9 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="rouge", laize=140, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="vert", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="vert", laize=140, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[3]))
     i += 1
@@ -189,7 +189,7 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[2]))
     i += 1
@@ -205,21 +205,21 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[4, 8]))
-    i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4]))
-    i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4]))
     i += 1
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[2, 3]))
+    i += 1
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4]))
+    i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4]))
     i += 1
@@ -233,7 +233,7 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[5]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[3]))
     i += 1
@@ -243,7 +243,7 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=140, longueur=700, poses=[4]))
     i += 1
@@ -263,9 +263,9 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[2]))
     i += 1
@@ -273,21 +273,21 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[0]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[3]))
     i += 1
@@ -299,9 +299,9 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="orange", laize=140, longueur=700, poses=[4]))
     i += 1
@@ -321,13 +321,13 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ivoire", laize=150, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ivoire", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ivoire", laize=150, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ivoire", laize=150, longueur=500, poses=[4]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ivoire", laize=150, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ivoire", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ivoire", laize=150, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ivoire", laize=150, longueur=500, poses=[4]))
     i += 1
@@ -341,13 +341,13 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=150, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=150, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=150, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=150, longueur=500, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=150, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=150, longueur=500, poses=[4]))
     i += 1
@@ -363,15 +363,11 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[4, 8]))
-    i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[4]))
-    i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[4]))
+    bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[4]))
     i += 1
@@ -379,7 +375,11 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[4]))
+    i += 1
+    bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[4]))
+    i += 1
+    bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[4]))
     i += 1
@@ -393,7 +393,7 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="marron", laize=150, longueur=500, poses=[2]))
     i += 1
@@ -407,9 +407,9 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="noir", laize=150, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="noir", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="noir", laize=150, longueur=500, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="noir", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="noir", laize=150, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="noir", laize=150, longueur=500, poses=[4]))
     i += 1
@@ -435,13 +435,13 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="noir", laize=150, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="noir", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="noir", laize=150, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="noir", laize=150, longueur=500, poses=[4]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="noir", laize=150, longueur=500, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="noir", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="noir", laize=150, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="noir", laize=150, longueur=500, poses=[4]))
     i += 1
@@ -453,9 +453,9 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="orange", laize=150, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=150, longueur=500, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=150, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="orange", laize=150, longueur=500, poses=[2]))
     i += 1
@@ -523,7 +523,7 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="rouge", laize=150, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="rouge", laize=150, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="rouge", laize=150, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="rouge", laize=150, longueur=500, poses=[4]))
     i += 1
@@ -549,7 +549,7 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=150, longueur=700, poses=[2]))
     i += 1
@@ -571,11 +571,11 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=150, longueur=700, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=150, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=150, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=150, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=150, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=150, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=150, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=150, longueur=700, poses=[4]))
     i += 1
@@ -585,13 +585,13 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=150, longueur=700, poses=[0]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=150, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=150, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="orange", laize=150, longueur=700, poses=[0]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=150, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=150, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=150, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=150, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=160, longueur=700, poses=[0]))
     i += 1
@@ -603,27 +603,27 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=173, longueur=700, poses=[0]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=173, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=173, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=173, longueur=700, poses=[0]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=173, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=173, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=173, longueur=700, poses=[3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=173, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=173, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=173, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=173, longueur=700, poses=[4, 8]))
-    i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=173, longueur=700, poses=[2]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=173, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=173, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=173, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=173, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ivoire", laize=180, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=173, longueur=700, poses=[2, 3]))
+    i += 1
+    bobine_store.add_bobine(Bobine(code=i, color="ivoire", laize=180, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ivoire", laize=180, longueur=500, poses=[4]))
     i += 1
@@ -635,23 +635,23 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=500, poses=[4]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="marron", laize=180, longueur=500, poses=[0]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="marron", laize=180, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="marron", laize=180, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="marron", laize=180, longueur=500, poses=[2]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="noir", laize=180, longueur=500, poses=[0]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="noir", laize=180, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="noir", laize=180, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="noir", laize=180, longueur=500, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="noir", laize=180, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="noir", laize=180, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="noir", laize=180, longueur=500, poses=[2]))
     i += 1
@@ -679,13 +679,13 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="rouge", laize=180, longueur=500, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="rouge", laize=180, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="rouge", laize=180, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="rouge", laize=180, longueur=500, poses=[2]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="rouge", laize=180, longueur=500, poses=[3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="rouge", laize=180, longueur=500, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="rouge", laize=180, longueur=500, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="vert", laize=180, longueur=500, poses=[0]))
     i += 1
@@ -705,9 +705,9 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=180, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=180, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=180, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="blanc", laize=180, longueur=700, poses=[2]))
     i += 1
@@ -719,7 +719,7 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[1]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[3]))
     i += 1
@@ -727,23 +727,23 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[4, 8]))
-    i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[1]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[1]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[1]))
+    i += 1
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=180, longueur=700, poses=[1]))
     i += 1
@@ -753,33 +753,33 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=700, poses=[0]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=700, poses=[3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="jaune", laize=180, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="orange", laize=180, longueur=700, poses=[0]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=180, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="orange", laize=180, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=180, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="orange", laize=180, longueur=700, poses=[4]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=180, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=180, longueur=700, poses=[2, 3]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=180, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="orange", laize=180, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="orange", laize=180, longueur=700, poses=[4]))
     i += 1
@@ -799,11 +799,11 @@ def add_all_bobines(bobine_store: BobineStore) -> None:
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=190, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=190, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=190, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=190, longueur=700, poses=[2]))
     i += 1
-    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=190, longueur=700, poses=[4, 8]))
+    bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=190, longueur=700, poses=[2, 3]))
     i += 1
     bobine_store.add_bobine(Bobine(code=i, color="ecru", laize=190, longueur=700, poses=[2]))
     i += 1

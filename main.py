@@ -3,27 +3,33 @@ import time
 from refente_store import refente_store
 from bobine_store import bobine_store, get_combinaison_label
 from bobine_mere_store import bobine_mere_store
+from algogen_ivoire import get_combinaison_from_bobine_ivoire, get_first_generation, get_fitness
 
 from bobine_data_estimate import add_all_bobines
 # from bobine_data_GESCOM import add_all_bobines
 
 add_all_bobines(bobine_store)
+generation = get_first_generation(100, get_combinaison_from_bobine_ivoire())
+generation.sort(key=lambda t: t[1])
+print(generation[-1][1])
 
-# # __________________CALCUL COMBINAISON POUR UN COUPLE DE REFENTE/BOBINE MERE__________________
-bobine_mere = bobine_mere_store.bobines_meres[26]
-print("_____BOBINE MERE_____")
-print(bobine_mere)
-refente = refente_store.refentes[4]
-print("_____ REFENTE_____")
-print(refente)
-new_bobine_store = bobine_store.filter_from_refente_and_bobine_mere(refente=refente, bobine_mere=bobine_mere)
-new_count_combinaisons = new_bobine_store.get_combinaisons_from_refente(refente=refente)
-new_count_combinaisons.sort(key=lambda c: get_combinaison_label(c))
-for combinaison in new_count_combinaisons:
-    for (bobine, pose) in combinaison:
-        print("{} x {}".format(bobine, pose), end=" - ")
-    print("")
-print(len(new_count_combinaisons))
+
+
+# # # __________________CALCUL COMBINAISON POUR UN COUPLE DE REFENTE/BOBINE MERE__________________
+# bobine_mere = bobine_mere_store.bobines_meres[26]
+# print("_____BOBINE MERE_____")
+# print(bobine_mere)
+# refente = refente_store.refentes[4]
+# print("_____ REFENTE_____")
+# print(refente)
+# new_bobine_store = bobine_store.filter_from_refente_and_bobine_mere(refente=refente, bobine_mere=bobine_mere)
+# new_count_combinaisons = new_bobine_store.get_combinaisons_from_refente(refente=refente)
+# new_count_combinaisons.sort(key=lambda c: get_combinaison_label(c))
+# for combinaison in new_count_combinaisons:
+#     for (bobine, pose) in combinaison:
+#         print("{} x {}".format(bobine, pose), end=" - ")
+#     print("")
+# print(len(new_count_combinaisons))
 
 
 # # __________________CALCUL COMBINAISON POSSIBLE__________________
