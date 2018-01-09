@@ -43,10 +43,8 @@ def get_combinaison_from_bobine_ivoire() -> List[List[Tuple[Bobine, int]]]:
 
 def get_plan_production(combinaisons: List[List[Tuple[Bobine, int]]]) -> List[Tuple[Bobine, int]]:
     plan_production = []
-    count_combinaisons = len(combinaisons)
-    while len(plan_production) < 10:
-        plan_production.append(combinaisons[random.randint(0, count_combinaisons - 1)])
-    # display_combinaison(plan_production, sort=False)
+    while len(plan_production) < 100:
+        plan_production.append(combinaisons[random.randint(0, len(combinaisons) - 1)])
     return plan_production
 
 
@@ -98,11 +96,44 @@ def get_fitness(plan_production: List[Tuple[Bobine, int]]) -> int:
 
 
 def get_first_generation(generation_size: int, combinaisons: List[List[Tuple[Bobine, int]]]) -> List[Tuple[List[Tuple[Bobine, int]], int]]:
-    count_individu = 0
     generation = []
-    while count_individu < generation_size:
+    while len(generation) < generation_size:
         plan_production = get_plan_production(combinaisons)
         fitness = get_fitness(plan_production)
         generation.append((plan_production, fitness))
-        count_individu += 1
     return generation
+
+
+def get_croissement(plan_prod_1: List[Tuple[Bobine, int]], plan_prod_2: List[Tuple[Bobine, int]]) -> List[Tuple[Bobine, int]]:
+    index_cut = random.randint(0, len(plan_prod_1) - 1)
+    new_plan_prod = []
+    while len(new_plan_prod) < len(plan_prod_1):
+        plan_prod_parent = plan_prod_1 if len(new_plan_prod) < index_cut else plan_prod_2
+        new_plan_prod.append(plan_prod_parent[len(new_plan_prod)])
+    return new_plan_prod
+
+
+def get_mutation(plan_prod: List[Tuple[Bobine, int]]):
+    index_mutation = random.randint(0, len(plan_prod) - 1)
+    combinaisons = get_combinaison_from_bobine_ivoire()
+    plan_prod[index_mutation] = combinaisons[random.randint(0, len(combinaisons) - 1)]
+
+
+def get_next_generation(generation_size: int, generation: List[Tuple[List[Tuple[Bobine, int]], int]]):
+    new_generation = []
+    new_generation.append(generation[0])
+    index_generation = 0
+    while len(new_generation) < generation_size:
+        new_plan_prod = get_croissement(generation[index_generation][0], generation[index_generation + 1][0])
+        fitness = get_fitness(new_plan_prod)
+        new_generation.append((new_plan_prod, fitness))
+        new_plan_prod = get_croissement(generation[index_generation + 1][0], generation[index_generation][0])
+        fitness = get_fitness(new_plan_prod)
+        new_generation.append((new_plan_prod, fitness))
+        index_generation += 1
+    count_mutation = 0
+    while count_mutation < round(len(new_generation)*0.3):
+        get_mutation(new_generation[random.randint(0, len(generation) - 1)][0])
+        count_mutation += 1
+    return new_generation
+
