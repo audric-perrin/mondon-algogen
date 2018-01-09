@@ -74,7 +74,5 @@ refente_store.add_refente(Refente(code=i, pistes=[240, 240, 240]))
 i += 1
 refente_store.add_refente(Refente(code=i, pistes=[320, 240]))
 i += 1
-refente_store.add_refente(Refente(code=i, pistes=[260, 260, 320]))
-i += 1
 refente_store.add_refente(Refente(code=i, pistes=[210, 210, 210, 210]))
 i += 1
