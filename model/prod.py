@@ -28,12 +28,11 @@ class Production:
 
 
 class PlanProd:
-    def __init__(self):
+    def __init__(self, combinaisons: List[Production]):
         self.prods = []  # type: List[Production]
-        self.combinaisons = []  # type: List[Production]
-
-    def get_plan_production(self, size_plan_prod: int, combinaisons: List[Production]):
         self.combinaisons = combinaisons
+
+    def get_plan_production(self, size_plan_prod: int):
         while len(self.prods) < size_plan_prod:
             alea_index_combinaison = random.randint(0, len(self.combinaisons) - 1)
             self.prods.append(self.combinaisons[alea_index_combinaison])

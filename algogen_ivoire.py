@@ -44,8 +44,8 @@ class Individu:
 
     def get_stock_store(self):
         new_stock_store = StockStore()
-        for production in self.plan_prod.prods:
-            for emplacement in production:
+        for prod in self.plan_prod.prods:
+            for emplacement in prod.emplacements:
                 quantity = emplacement.pose
                 bobine = emplacement.bobine
                 quantity = max(quantity, 1)
@@ -71,16 +71,21 @@ class Individu:
 
 
 class Generation:
-    def __init__(self, plan_prod_size: int=None, generation_size: int=None, combinaisons: List[Production]=None):
+    def __init__(self,
+                 plan_prod_size: int=None,
+                 generation_size: int=None,
+                 combinaisons: List[Production]=None,
+                 mutation_rate: float=None):
         self.individus = []  # type: List[Individu]
         self.generation_size = generation_size
         self.plan_prod_size = plan_prod_size
         self.combinaisons = combinaisons
+        self.mutation_rate = mutation_rate
 
     def get_individus(self):
         while len(self.individus) < self.generation_size:
-            new_plan_prod = PlanProd()
-            new_plan_prod.get_plan_production(self.plan_prod_size, self.combinaisons)
+            new_plan_prod = PlanProd(combinaisons=self.combinaisons)
+            new_plan_prod.get_plan_production(self.plan_prod_size)
             self.individus.append(Individu(new_plan_prod))
 
     def add_individu(self, individu: Individu):
@@ -89,10 +94,9 @@ class Generation:
     def sort_individu(self):
         self.individus.sort(key=lambda i: i.fitness, reverse=True)
 
-    @staticmethod
-    def get_croissement(plan_prod_1: PlanProd, plan_prod_2: PlanProd) -> PlanProd:
+    def get_croissement(self, plan_prod_1: PlanProd, plan_prod_2: PlanProd) -> PlanProd:
         index_cut = random.randint(0, len(plan_prod_1.prods) - 1)
-        new_plan_prod = PlanProd()
+        new_plan_prod = PlanProd(self.combinaisons)
         while len(new_plan_prod.prods) < len(plan_prod_1.prods):
             plan_prod_parent = plan_prod_1 if len(new_plan_prod.prods) < index_cut else plan_prod_2
             new_plan_prod.prods.append(plan_prod_parent.prods[len(new_plan_prod.prods)])
@@ -112,12 +116,11 @@ class Generation:
             new_individu = Individu(new_plan_prod)
             new_generation.add_individu(new_individu)
             index_generation += 1
-        # count_mutation = 0
-        # while count_mutation < round(len(new_generation.individus)*0.2):
-        #     alea_index = random.randint(0, len(new_generation.individus)-1)
-        #     print(new_generation.individus[alea_index])
-        #     new_generation.individus[alea_index].mutation()
-        #     count_mutation += 1
+        count_mutation = 0
+        while count_mutation < round(len(new_generation.individus)*self.mutation_rate):
+            alea_index = random.randint(0, len(new_generation.individus)-1)
+            new_generation.individus[alea_index].mutation()
+            count_mutation += 1
         new_generation.sort_individu()
         return new_generation
 
@@ -164,9 +167,15 @@ def display_combinaisons(combinaisons: List[List[Emplacement]], sort: bool=True)
 
 
 def get_solution():
+    PLAN_PROD_SIZE = 5
+    GENERATION_SIZE = 5
+    MUTATION_RATE = 0.1
     bobine_store_ivoire = get_bobine_ivoire()
     all_combinaisons = get_combinaison_from_bobine_store(bobine_store_ivoire)
-    generation = Generation(plan_prod_size=5, generation_size=5, combinaisons=all_combinaisons)
+    generation = Generation(plan_prod_size=PLAN_PROD_SIZE,
+                            generation_size=GENERATION_SIZE,
+                            combinaisons=all_combinaisons,
+                            mutation_rate=MUTATION_RATE)
     generation.get_individus()
     generation.sort_individu()
     print(generation)
