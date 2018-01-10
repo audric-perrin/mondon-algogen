@@ -3,24 +3,25 @@ import time
 from refente_store import refente_store
 from bobine_store import bobine_store, get_combinaison_label
 from bobine_mere_store import bobine_mere_store
-from algogen_ivoire import get_combinaison_from_bobine_ivoire, get_first_generation, get_next_generation
+from algogen_ivoire import get_solution
 
 from bobine_data_estimate import add_all_bobines
 # from bobine_data_GESCOM import add_all_bobines
 
 
-# ____________PARAM ALGOGENE____________
-SIZE_GENERATION = 500
 add_all_bobines(bobine_store)
-count_generation = 0
-generation = get_first_generation(SIZE_GENERATION, get_combinaison_from_bobine_ivoire())
-print(generation[0][1])
-while count_generation < 20:
-    generation.sort(key=lambda t: t[1], reverse=True)
-    new_generation = get_next_generation(SIZE_GENERATION, generation)
-    generation = new_generation
-    count_generation += 1
-    print(generation[0][1])
+get_solution()
+# count_generation = 0
+# generation = get_first_generation(SIZE_GENERATION, get_combinaison_from_bobine_ivoire())
+# while count_generation < 5:
+#     generation.sort(key=lambda t: t[1], reverse=True)
+#     new_generation = get_next_generation(SIZE_GENERATION, generation)
+#     generation = new_generation
+#     count_generation += 1
+# generation.sort(key=lambda t: t[1], reverse=True)
+# print(generation[0])
+# display_combinaison(generation[0][0])
+# print(generation[0][1])
 
 
 

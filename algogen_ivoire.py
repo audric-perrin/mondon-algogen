@@ -1,51 +1,10 @@
 import random
-from typing import List, Tuple
+from typing import List
 
 from bobine_store import BobineStore, bobine_store, Bobine, get_combinaison_label
 from bobine_mere_store import bobine_mere_store
 from refente_store import refente_store
-
-
-def get_bobine_ivoire() -> BobineStore:
-    bobine_store_ivoire = BobineStore()
-    for bobine in bobine_store.bobines:
-        if bobine.color == "ivoire":
-            bobine_store_ivoire.add_bobine(bobine)
-    return bobine_store_ivoire
-
-
-def display_combinaison(combinaisons: List[List[Tuple[Bobine, int]]], sort: bool=True):
-    if sort:
-        combinaisons.sort(key=lambda c: get_combinaison_label(c))
-    for combinaison in combinaisons:
-        for (bobine, pose) in combinaison:
-            print("{} x {}".format(bobine, pose), end=" - ")
-        print("")
-    print('\n')
-
-
-def get_combinaison_from_bobine_ivoire() -> List[List[Tuple[Bobine, int]]]:
-    bobine_store_ivoire = get_bobine_ivoire()
-    combinaisons = []
-    for bobine_mere in bobine_mere_store.bobines_meres:
-        refentes = refente_store.filter_for_bobine_mere(bobine_mere).refentes
-        for refente in refentes:
-            new_bobine_store = bobine_store_ivoire.filter_from_refente_and_bobine_mere(refente=refente,
-                                                                                       bobine_mere=bobine_mere)
-            new_combinaisons = new_bobine_store.get_combinaisons_from_refente(refente=refente)
-            combinaisons += new_combinaisons
-    dic_combinaisons = bobine_store_ivoire.dedupe_combinaisons(combinaisons)
-    combinaisons = []
-    for combinaison in dic_combinaisons:
-        combinaisons.append(combinaison)
-    return combinaisons
-
-
-def get_plan_production(combinaisons: List[List[Tuple[Bobine, int]]]) -> List[Tuple[Bobine, int]]:
-    plan_production = []
-    while len(plan_production) < 10:
-        plan_production.append(combinaisons[random.randint(0, len(combinaisons) - 1)])
-    return plan_production
+from model.prod import PlanProd, Production, Emplacement
 
 
 class Stock:
@@ -53,7 +12,7 @@ class Stock:
         self.bobine = bobine
         self.quantity = stock
 
-    def __str__(self):
+    def __repr__(self):
         return "Stock {} : {}".format(self.bobine, self.quantity)
 
 
@@ -71,69 +30,149 @@ class StockStore:
                 return
         self.add_stock(Stock(bobine, quantity))
 
-    def __str__(self):
+    def __repr__(self):
         for stock in self.stocks:
             print(stock)
         return ""
 
 
-def get_stock(plan_production: List[Tuple[Bobine, int]]) -> StockStore:
-    new_stock_store = StockStore()
-    for production in plan_production:
-        for (bobine, quantity) in production:
-            quantity = max(quantity, 1)
-            new_stock_store.add_bobine(bobine, quantity)
-    return new_stock_store
+class Individu:
+    def __init__(self, plan_prod: PlanProd):
+        self.plan_prod = plan_prod
+        self.stock_store = self.get_stock_store()
+        self.fitness = self.get_fitness()
+
+    def get_stock_store(self):
+        new_stock_store = StockStore()
+        for production in self.plan_prod.prods:
+            for emplacement in production:
+                quantity = emplacement.pose
+                bobine = emplacement.bobine
+                quantity = max(quantity, 1)
+                new_stock_store.add_bobine(bobine, quantity)
+        return new_stock_store
+
+    def mutation(self):
+        self.plan_prod.mutation()
+        self.stock_store = self.get_stock_store()
+        self.fitness = self.get_fitness()
+
+    def get_fitness(self):
+        fitness = 0
+        for stock in self.stock_store.stocks:
+            if stock.bobine.code == 403:
+                fitness += stock.quantity
+        return fitness
+
+    def __repr__(self):
+        for plan_prod in self.plan_prod.prods:
+            print(plan_prod)
+        return "Note: {} \n".format(self.fitness)
 
 
-def get_fitness(plan_production: List[Tuple[Bobine, int]]) -> int:
-    new_stock_store = get_stock(plan_production)
-    fitness = 0
-    for stock in new_stock_store.stocks:
-        if stock.bobine.code == 403:
-            fitness += stock.quantity
-    return fitness
+class Generation:
+    def __init__(self, plan_prod_size: int=None, generation_size: int=None, combinaisons: List[Production]=None):
+        self.individus = []  # type: List[Individu]
+        self.generation_size = generation_size
+        self.plan_prod_size = plan_prod_size
+        self.combinaisons = combinaisons
+
+    def get_individus(self):
+        while len(self.individus) < self.generation_size:
+            new_plan_prod = PlanProd()
+            new_plan_prod.get_plan_production(self.plan_prod_size, self.combinaisons)
+            self.individus.append(Individu(new_plan_prod))
+
+    def add_individu(self, individu: Individu):
+        self.individus.append(individu)
+
+    def sort_individu(self):
+        self.individus.sort(key=lambda i: i.fitness, reverse=True)
+
+    @staticmethod
+    def get_croissement(plan_prod_1: PlanProd, plan_prod_2: PlanProd) -> PlanProd:
+        index_cut = random.randint(0, len(plan_prod_1.prods) - 1)
+        new_plan_prod = PlanProd()
+        while len(new_plan_prod.prods) < len(plan_prod_1.prods):
+            plan_prod_parent = plan_prod_1 if len(new_plan_prod.prods) < index_cut else plan_prod_2
+            new_plan_prod.prods.append(plan_prod_parent.prods[len(new_plan_prod.prods)])
+        return new_plan_prod
+
+    def get_next_generation(self):
+        new_generation = Generation(generation_size=self.generation_size)
+        new_generation.add_individu(self.individus[0])
+        index_generation = 0
+        while len(new_generation.individus) < self.generation_size:
+            plan_prod_1 = self.individus[index_generation].plan_prod
+            plan_prod_2 = self.individus[index_generation + 1].plan_prod
+            new_plan_prod = self.get_croissement(plan_prod_1, plan_prod_2)
+            new_individu = Individu(new_plan_prod)
+            new_generation.add_individu(new_individu)
+            new_plan_prod = self.get_croissement(plan_prod_2, plan_prod_1)
+            new_individu = Individu(new_plan_prod)
+            new_generation.add_individu(new_individu)
+            index_generation += 1
+        # count_mutation = 0
+        # while count_mutation < round(len(new_generation.individus)*0.2):
+        #     alea_index = random.randint(0, len(new_generation.individus)-1)
+        #     print(new_generation.individus[alea_index])
+        #     new_generation.individus[alea_index].mutation()
+        #     count_mutation += 1
+        new_generation.sort_individu()
+        return new_generation
+
+    def __repr__(self):
+        for individu in self.individus:
+            print(individu)
+        return ""
 
 
-def get_first_generation(generation_size: int, combinaisons: List[List[Tuple[Bobine, int]]]) -> List[Tuple[List[Tuple[Bobine, int]], int]]:
-    generation = []
-    while len(generation) < generation_size:
-        plan_production = get_plan_production(combinaisons)
-        fitness = get_fitness(plan_production)
-        generation.append((plan_production, fitness))
-    return generation
+def get_bobine_ivoire() -> BobineStore:
+    bobine_store_ivoire = BobineStore()
+    for bobine in bobine_store.bobines:
+        if bobine.color == "ivoire":
+            bobine_store_ivoire.add_bobine(bobine)
+    return bobine_store_ivoire
 
 
-def get_croissement(plan_prod_1: List[Tuple[Bobine, int]], plan_prod_2: List[Tuple[Bobine, int]]) -> List[Tuple[Bobine, int]]:
-    index_cut = random.randint(0, len(plan_prod_1) - 1)
-    new_plan_prod = []
-    while len(new_plan_prod) < len(plan_prod_1):
-        plan_prod_parent = plan_prod_1 if len(new_plan_prod) < index_cut else plan_prod_2
-        new_plan_prod.append(plan_prod_parent[len(new_plan_prod)])
-    return new_plan_prod
+def get_combinaison_from_bobine_store(current_bobine_store: BobineStore) -> List[Production]:
+    combinaisons = []
+    for bobine_mere in bobine_mere_store.bobines_meres:
+        if bobine_mere.color != "ivoire":
+            continue
+        refentes = refente_store.filter_for_bobine_mere(bobine_mere).refentes
+        for refente in refentes:
+            new_bobine_store = current_bobine_store.filter_from_refente_and_bobine_mere(refente=refente,
+                                                                                        bobine_mere=bobine_mere)
+            new_combinaisons = new_bobine_store.get_combinaisons_from_refente(refente=refente)
+            combinaisons += new_combinaisons
+    dic_combinaisons = bobine_store.dedupe_combinaisons(combinaisons)
+    combinaisons = []
+    for combinaison in dic_combinaisons:
+        combinaisons.append(combinaison)
+    return combinaisons
 
 
-def get_mutation(plan_prod: List[Tuple[Bobine, int]]):
-    index_mutation = random.randint(0, len(plan_prod) - 1)
-    combinaisons = get_combinaison_from_bobine_ivoire()
-    plan_prod[index_mutation] = combinaisons[random.randint(0, len(combinaisons) - 1)]
+def display_combinaisons(combinaisons: List[List[Emplacement]], sort: bool=True):
+    if sort:
+        combinaisons.sort(key=lambda c: get_combinaison_label(c))
+    print('\n')
+    for combinaison in combinaisons:
+        for emplacement in combinaison:
+            print(emplacement, end="")
+        print("")
 
 
-def get_next_generation(generation_size: int, generation: List[Tuple[List[Tuple[Bobine, int]], int]]):
-    new_generation = []
-    new_generation.append(generation[0])
-    index_generation = 0
-    while len(new_generation) < generation_size:
-        new_plan_prod = get_croissement(generation[index_generation][0], generation[index_generation + 1][0])
-        fitness = get_fitness(new_plan_prod)
-        new_generation.append((new_plan_prod, fitness))
-        new_plan_prod = get_croissement(generation[index_generation + 1][0], generation[index_generation][0])
-        fitness = get_fitness(new_plan_prod)
-        new_generation.append((new_plan_prod, fitness))
-        index_generation += 1
-    count_mutation = 0
-    while count_mutation < round(len(new_generation)*0.5):
-        get_mutation(new_generation[random.randint(0, len(generation) - 1)][0])
-        count_mutation += 1
-    return new_generation
-
+def get_solution():
+    bobine_store_ivoire = get_bobine_ivoire()
+    all_combinaisons = get_combinaison_from_bobine_store(bobine_store_ivoire)
+    generation = Generation(plan_prod_size=5, generation_size=5, combinaisons=all_combinaisons)
+    generation.get_individus()
+    generation.sort_individu()
+    print(generation)
+    count_generation = 0
+    while count_generation < 1:
+        new_generation = generation.get_next_generation()
+        print("-------NEXT GENERATION-------")
+        print(new_generation)
+        count_generation += 1

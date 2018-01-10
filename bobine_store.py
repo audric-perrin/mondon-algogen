@@ -1,24 +1,16 @@
-from typing import List, Tuple, Optional
+from typing import List, Optional
 from bobine_mere_store import BobineMere
 from refente_store import Refente
+from model.prod import Emplacement
+from model.bobine import Bobine
 
 time_spent_deduping = 0
 
 
-class Bobine:
-    def __init__(self, code: int, color: str, laize: float, longueur: int, poses: List[int]) -> None:
-        self.code = code
-        self.color = color
-        self.laize = laize
-        self.longueur = longueur
-        self.poses = poses
-
-    def __str__(self):
-        return "B{}({}, {}, {}, {})".format(self.code, self.color.capitalize(), self.laize, self.longueur, self.poses)
-
-
-def get_combinaison_label(combinaison: List[Tuple[Bobine, int]]) -> int:
-    combinaison_as_int = [bobine.code * (pose + 1) for (bobine, pose) in combinaison]
+def get_combinaison_label(combinaison: List[Emplacement]) -> int:
+    if not combinaison:
+        return 0
+    combinaison_as_int = [emplacement.bobine.code * (emplacement.pose + 1) for emplacement in combinaison]
     combinaison_as_int = sorted(combinaison_as_int)
     count = 0
     for (index, combi_int) in enumerate(combinaison_as_int):
@@ -43,7 +35,10 @@ class BobineStore:
         return new_bobine_store
 
     def get_combinaisons_from_refente(self, refente: Refente):
-        combinaisons = self.get_combinaisons_from_refente_at_index(combinaison=[], refente=refente, index=0, condition_longueur=None)
+        combinaisons = self.get_combinaisons_from_refente_at_index(combinaison=[],
+                                                                   refente=refente,
+                                                                   index=0,
+                                                                   condition_longueur=None)
         return combinaisons
 
     @staticmethod
@@ -57,8 +52,11 @@ class BobineStore:
                 break
         return count
 
-    def get_bobines_and_pose_for_refente_at_index(self, refente: Refente, index: int, condition_longueur) -> List[Tuple[Bobine, int]]:
-        results = []  # type : List[Tuple[Bobine, int]]
+    def get_emplacement_for_refente_at_index(self,
+                                             refente: Refente,
+                                             index: int,
+                                             condition_longueur) -> List[Emplacement]:
+        results = []  # type : List[Emplacement]
         piste_count = self.get_consecutive_piste_count_at_index(refente, index)
         piste_laize = refente.pistes[index]
         for bobine in self.bobines:
@@ -70,33 +68,38 @@ class BobineStore:
             if bobine.laize == piste_laize:
                 for pose in bobine.poses:
                     if pose <= piste_count:
-                        results.append((bobine, pose))
+                        results.append(Emplacement(bobine, pose))
         return results
 
     @staticmethod
-    def dedupe_combinaisons(combinaisons: List[List[Tuple[Bobine, int]]]):
+    def dedupe_combinaisons(combinaisons: List[List[Emplacement]]):
         combinaison_dic = {get_combinaison_label(combinaison): combinaison for combinaison in reversed(combinaisons)}
         return combinaison_dic.values()
 
     @staticmethod
-    def is_bobine_and_pose_valid_in_combinaison(combinaison: List[Tuple[Bobine, int]], bobine: Bobine, pose: int) -> bool:
-        count_pose = bobine.poses.count(pose)
+    def is_emplacement_valid_in_combinaison(combinaison: List[Emplacement], emplacement_is_valid: Emplacement) -> bool:
+        if not combinaison:
+            return True
         count = 0
-        for c_bobine_and_pose in combinaison:
-            if c_bobine_and_pose == (bobine, pose):
+        for emplacement in combinaison:
+            if emplacement.bobine == emplacement_is_valid.bobine and emplacement.pose == emplacement_is_valid.pose:
                 count += 1
-        return pose == 0 or count_pose > count
+        return emplacement_is_valid.pose == 0 or emplacement_is_valid.pose > count
 
-    def get_combinaisons_from_refente_at_index(self, combinaison: List[Tuple[Bobine, int]], refente: Refente, index: int, condition_longueur: Optional[int]):
+    def get_combinaisons_from_refente_at_index(self,
+                                               combinaison: List[Emplacement],
+                                               refente: Refente,
+                                               index: int,
+                                               condition_longueur: Optional[int]):
         global time_spent_deduping
-        new_combinaisons = []  # type: List[List[Tuple[Bobine, int]]]
-        bobines_and_poses = self.get_bobines_and_pose_for_refente_at_index(refente, index, condition_longueur)
-        for bobine_and_pose in bobines_and_poses:
-            bobine = bobine_and_pose[0]
-            pose = bobine_and_pose[1]
-            if self.is_bobine_and_pose_valid_in_combinaison(combinaison, bobine, pose):
+        new_combinaisons = []  # type: List[List[Emplacement]]
+        emplacements = self.get_emplacement_for_refente_at_index(refente, index, condition_longueur)
+        for emplacement in emplacements:
+            bobine = emplacement.bobine
+            pose = emplacement.pose
+            if self.is_emplacement_valid_in_combinaison(combinaison, emplacement):
                 condition_longueur = bobine.longueur
-                new_combinaison = combinaison + [(bobine, pose)]
+                new_combinaison = combinaison + [Emplacement(bobine, pose)]
                 actual_pose = 1 if pose == 0 else pose
                 if actual_pose + index == len(refente.pistes):
                     new_combinaisons.append(new_combinaison)
@@ -112,7 +115,8 @@ class BobineStore:
                     continue
         return new_combinaisons
 
-    def get_time_deduping(self):
+    @staticmethod
+    def get_time_deduping():
         global time_spent_deduping
         return time_spent_deduping
 
@@ -123,4 +127,3 @@ class BobineStore:
 
 
 bobine_store = BobineStore()
-
