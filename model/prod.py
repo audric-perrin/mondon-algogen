@@ -1,12 +1,12 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 import random
-from typing import List
+from typing import List, Optional
 from model.bobine import Bobine
 
 
 class Emplacement:
-    def __init__(self, bobine: Bobine, pose: int):
+    def __init__(self, bobine: Bobine, pose: int) -> None:
         self.bobine = bobine
         self.pose = pose
 
@@ -15,7 +15,7 @@ class Emplacement:
 
 
 class Production:
-    def __init__(self):
+    def __init__(self) -> None:
         self.emplacements = []  # type: List[Emplacement]
 
     def add_emplacement(self, emplacement: Emplacement):
@@ -23,19 +23,20 @@ class Production:
 
     def __repr__(self):
         for emplacement in self.emplacements:
-            print(emplacement)
+            print(emplacement, end="")
         return ""
 
 
 class PlanProd:
-    def __init__(self, combinaisons: List[Production]):
+    def __init__(self, combinaisons: Optional[List[Production]]) -> None:
         self.prods = []  # type: List[Production]
         self.combinaisons = combinaisons
 
     def get_plan_production(self, size_plan_prod: int):
         while len(self.prods) < size_plan_prod:
-            alea_index_combinaison = random.randint(0, len(self.combinaisons) - 1)
-            self.prods.append(self.combinaisons[alea_index_combinaison])
+            if self.combinaisons:
+                alea_index_combinaison = random.randint(0, len(self.combinaisons) - 1)
+                self.prods.append(self.combinaisons[alea_index_combinaison])
 
     def mutation(self):
         index_mutation = random.randint(0, len(self.prods) - 1)

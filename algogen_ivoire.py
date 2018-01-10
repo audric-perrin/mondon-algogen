@@ -4,7 +4,7 @@ from typing import List
 from bobine_store import BobineStore, bobine_store, Bobine, get_combinaison_label
 from bobine_mere_store import bobine_mere_store
 from refente_store import refente_store
-from model.prod import PlanProd, Production, Emplacement
+from model.prod import PlanProd, Production
 
 
 class Stock:
@@ -37,7 +37,7 @@ class StockStore:
 
 
 class Individu:
-    def __init__(self, plan_prod: PlanProd):
+    def __init__(self, plan_prod: PlanProd) -> None:
         self.plan_prod = plan_prod
         self.stock_store = self.get_stock_store()
         self.fitness = self.get_fitness()
@@ -45,7 +45,7 @@ class Individu:
     def get_stock_store(self):
         new_stock_store = StockStore()
         for prod in self.plan_prod.prods:
-            for emplacement in prod.emplacements:
+            for emplacement in prod:
                 quantity = emplacement.pose
                 bobine = emplacement.bobine
                 quantity = max(quantity, 1)
@@ -75,7 +75,7 @@ class Generation:
                  plan_prod_size: int=None,
                  generation_size: int=None,
                  combinaisons: List[Production]=None,
-                 mutation_rate: float=None):
+                 mutation_rate: float=None) -> None:
         self.individus = []  # type: List[Individu]
         self.generation_size = generation_size
         self.plan_prod_size = plan_prod_size
@@ -96,7 +96,7 @@ class Generation:
 
     def get_croissement(self, plan_prod_1: PlanProd, plan_prod_2: PlanProd) -> PlanProd:
         index_cut = random.randint(0, len(plan_prod_1.prods) - 1)
-        new_plan_prod = PlanProd(self.combinaisons)
+        new_plan_prod = PlanProd(combinaisons=self.combinaisons)
         while len(new_plan_prod.prods) < len(plan_prod_1.prods):
             plan_prod_parent = plan_prod_1 if len(new_plan_prod.prods) < index_cut else plan_prod_2
             new_plan_prod.prods.append(plan_prod_parent.prods[len(new_plan_prod.prods)])
@@ -139,7 +139,7 @@ def get_bobine_ivoire() -> BobineStore:
 
 
 def get_combinaison_from_bobine_store(current_bobine_store: BobineStore) -> List[Production]:
-    combinaisons = []
+    combinaisons = []  # type: List[Production]
     for bobine_mere in bobine_mere_store.bobines_meres:
         if bobine_mere.color != "ivoire":
             continue
@@ -156,12 +156,12 @@ def get_combinaison_from_bobine_store(current_bobine_store: BobineStore) -> List
     return combinaisons
 
 
-def display_combinaisons(combinaisons: List[List[Emplacement]], sort: bool=True):
+def display_combinaisons(combinaisons: List[Production], sort: bool=True):
     if sort:
         combinaisons.sort(key=lambda c: get_combinaison_label(c))
     print('\n')
     for combinaison in combinaisons:
-        for emplacement in combinaison:
+        for emplacement in combinaison.emplacements:
             print(emplacement, end="")
         print("")
 
@@ -172,16 +172,16 @@ def get_solution():
     MUTATION_RATE = 0.1
     bobine_store_ivoire = get_bobine_ivoire()
     all_combinaisons = get_combinaison_from_bobine_store(bobine_store_ivoire)
-    generation = Generation(plan_prod_size=PLAN_PROD_SIZE,
-                            generation_size=GENERATION_SIZE,
-                            combinaisons=all_combinaisons,
-                            mutation_rate=MUTATION_RATE)
-    generation.get_individus()
-    generation.sort_individu()
-    print(generation)
-    count_generation = 0
-    while count_generation < 1:
-        new_generation = generation.get_next_generation()
-        print("-------NEXT GENERATION-------")
-        print(new_generation)
-        count_generation += 1
+    # generation = Generation(plan_prod_size=PLAN_PROD_SIZE,
+    #                         generation_size=GENERATION_SIZE,
+    #                         combinaisons=all_combinaisons,
+    #                         mutation_rate=MUTATION_RATE)
+    # generation.get_individus()
+    # generation.sort_individu()
+    # # print(generation)
+    # count_generation = 0
+    # while count_generation < 1:
+    #     new_generation = generation.get_next_generation()
+    #     # print("-------NEXT GENERATION-------")
+    #     # print(new_generation)
+    #     count_generation += 1

@@ -1,16 +1,16 @@
 from typing import List, Optional
 from bobine_mere_store import BobineMere
 from refente_store import Refente
-from model.prod import Emplacement
+from model.prod import Emplacement, Production
 from model.bobine import Bobine
 
 time_spent_deduping = 0
 
 
-def get_combinaison_label(combinaison: List[Emplacement]) -> int:
+def get_combinaison_label(combinaison: Production) -> int:
     if not combinaison:
         return 0
-    combinaison_as_int = [emplacement.bobine.code * (emplacement.pose + 1) for emplacement in combinaison]
+    combinaison_as_int = [emplacement.bobine.code * (emplacement.pose + 1) for emplacement in combinaison.emplacements]
     combinaison_as_int = sorted(combinaison_as_int)
     count = 0
     for (index, combi_int) in enumerate(combinaison_as_int):
@@ -35,7 +35,7 @@ class BobineStore:
         return new_bobine_store
 
     def get_combinaisons_from_refente(self, refente: Refente):
-        combinaisons = self.get_combinaisons_from_refente_at_index(combinaison=[],
+        combinaisons = self.get_combinaisons_from_refente_at_index(combinaison=Production(),
                                                                    refente=refente,
                                                                    index=0,
                                                                    condition_longueur=None)
@@ -56,7 +56,7 @@ class BobineStore:
                                              refente: Refente,
                                              index: int,
                                              condition_longueur) -> List[Emplacement]:
-        results = []  # type : List[Emplacement]
+        results = []  # type: List[Emplacement]
         piste_count = self.get_consecutive_piste_count_at_index(refente, index)
         piste_laize = refente.pistes[index]
         for bobine in self.bobines:
@@ -72,34 +72,35 @@ class BobineStore:
         return results
 
     @staticmethod
-    def dedupe_combinaisons(combinaisons: List[List[Emplacement]]):
+    def dedupe_combinaisons(combinaisons: List[Production]):
         combinaison_dic = {get_combinaison_label(combinaison): combinaison for combinaison in reversed(combinaisons)}
         return combinaison_dic.values()
 
     @staticmethod
-    def is_emplacement_valid_in_combinaison(combinaison: List[Emplacement], emplacement_is_valid: Emplacement) -> bool:
-        if not combinaison:
-            return True
+    def is_emplacement_valid_in_combinaison(combinaison: Production,
+                                            emplacement_is_valid: Emplacement) -> bool:
         count = 0
-        for emplacement in combinaison:
+        for emplacement in combinaison.emplacements:
             if emplacement.bobine == emplacement_is_valid.bobine and emplacement.pose == emplacement_is_valid.pose:
                 count += 1
         return emplacement_is_valid.pose == 0 or emplacement_is_valid.pose > count
 
     def get_combinaisons_from_refente_at_index(self,
-                                               combinaison: List[Emplacement],
+                                               combinaison: Production,
                                                refente: Refente,
                                                index: int,
                                                condition_longueur: Optional[int]):
         global time_spent_deduping
-        new_combinaisons = []  # type: List[List[Emplacement]]
+        new_combinaisons = []  # type: List[Production]
         emplacements = self.get_emplacement_for_refente_at_index(refente, index, condition_longueur)
         for emplacement in emplacements:
             bobine = emplacement.bobine
             pose = emplacement.pose
             if self.is_emplacement_valid_in_combinaison(combinaison, emplacement):
                 condition_longueur = bobine.longueur
-                new_combinaison = combinaison + [Emplacement(bobine, pose)]
+                from copy import copy
+                new_combinaison = copy(combinaison)
+                new_combinaison.add_emplacement(Emplacement(bobine, pose))
                 actual_pose = 1 if pose == 0 else pose
                 if actual_pose + index == len(refente.pistes):
                     new_combinaisons.append(new_combinaison)

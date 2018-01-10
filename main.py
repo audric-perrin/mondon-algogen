@@ -4,12 +4,14 @@ from refente_store import refente_store
 from bobine_store import bobine_store, get_combinaison_label
 from bobine_mere_store import bobine_mere_store
 from algogen_ivoire import get_solution
+from model.prod import Production
 
 from bobine_data_estimate import add_all_bobines
 # from bobine_data_GESCOM import add_all_bobines
 
 
 add_all_bobines(bobine_store)
+combinaison = Production()
 get_solution()
 # count_generation = 0
 # generation = get_first_generation(SIZE_GENERATION, get_combinaison_from_bobine_ivoire())
