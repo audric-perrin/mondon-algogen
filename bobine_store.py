@@ -85,6 +85,13 @@ class BobineStore:
                 count += 1
         return emplacement_is_valid.pose == 0 or emplacement_is_valid.pose > count
 
+    @staticmethod
+    def copy_combinaison(combinaison: Production) -> Production:
+        new_combinaison = Production()
+        for emplacement in combinaison.emplacements:
+            new_combinaison.add_emplacement(emplacement)
+        return new_combinaison
+
     def get_combinaisons_from_refente_at_index(self,
                                                combinaison: Production,
                                                refente: Refente,
@@ -98,8 +105,7 @@ class BobineStore:
             pose = emplacement.pose
             if self.is_emplacement_valid_in_combinaison(combinaison, emplacement):
                 condition_longueur = bobine.longueur
-                from copy import copy
-                new_combinaison = copy(combinaison)
+                new_combinaison = self.copy_combinaison(combinaison)
                 new_combinaison.add_emplacement(Emplacement(bobine, pose))
                 actual_pose = 1 if pose == 0 else pose
                 if actual_pose + index == len(refente.pistes):

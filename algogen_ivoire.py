@@ -45,7 +45,7 @@ class Individu:
     def get_stock_store(self):
         new_stock_store = StockStore()
         for prod in self.plan_prod.prods:
-            for emplacement in prod:
+            for emplacement in prod.emplacements:
                 quantity = emplacement.pose
                 bobine = emplacement.bobine
                 quantity = max(quantity, 1)
@@ -167,21 +167,23 @@ def display_combinaisons(combinaisons: List[Production], sort: bool=True):
 
 
 def get_solution():
-    PLAN_PROD_SIZE = 5
-    GENERATION_SIZE = 5
+    PLAN_PROD_SIZE = 3
+    GENERATION_SIZE = 100
     MUTATION_RATE = 0.1
+    GENERATION_MAX = 5
     bobine_store_ivoire = get_bobine_ivoire()
     all_combinaisons = get_combinaison_from_bobine_store(bobine_store_ivoire)
-    # generation = Generation(plan_prod_size=PLAN_PROD_SIZE,
-    #                         generation_size=GENERATION_SIZE,
-    #                         combinaisons=all_combinaisons,
-    #                         mutation_rate=MUTATION_RATE)
-    # generation.get_individus()
-    # generation.sort_individu()
-    # # print(generation)
-    # count_generation = 0
-    # while count_generation < 1:
-    #     new_generation = generation.get_next_generation()
-    #     # print("-------NEXT GENERATION-------")
-    #     # print(new_generation)
-    #     count_generation += 1
+    generation = Generation(plan_prod_size=PLAN_PROD_SIZE,
+                            generation_size=GENERATION_SIZE,
+                            combinaisons=all_combinaisons,
+                            mutation_rate=MUTATION_RATE)
+    generation.get_individus()
+    generation.sort_individu()
+    print("-------GENERATION 0-------")
+    print(generation)
+    count_generation = 1
+    while count_generation < GENERATION_MAX:
+        new_generation = generation.get_next_generation()
+        print("-------GENERATION {}-------".format(count_generation))
+        print(new_generation)
+        count_generation += 1
